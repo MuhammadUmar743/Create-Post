@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Maket Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+ 
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>Social Market Web</span>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-primary" id="sellBtn" disabled>
+                        <i class="fas fa-plus"></i>
+                        Sell Item
+                    </button>
+                    <div id="authButtons">
+                        <button class="btn btn-secondary" id="signinBtn">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Sign In
+                        </button>
+                        <button class="btn btn-primary" id="signupBtn">
+                            <i class="fas fa-user-plus"></i>
+                            Sign Up
+                        </button>
+                    </div>
+                    <div class="profile-info" id="profileInfo" style="display: none;">
+                        <div class="profile-avatar" id="userAvatar">U</div>
+                        <div class="profile-details">
+                            <div class="profile-name" id="userName">User Name</div>
+                            <div class="profile-email" id="userEmail">user@example.com</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="hero-section">
+                <h1>Discover Premium Items</h1>
+                <p>Join thousands of users buying and selling high-quality products. Find exclusive deals or list your own items with our easy-to-use platform.</p>
+                <button class="btn btn-primary" id="heroSignupBtn">
+                    <i class="fas fa-rocket"></i>
+                    Get Started Today
+                </button>
+            </div>
+
+            <div class="success-message" id="successMessage"></div>
+
+            <h2 class="section-title">Featured Listings</h2>
+            <div class="ads-grid" id="adsContainer">
+                <!-- Ads will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal" id="signupModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Create Your Account</h2>
+                <button class="close-btn" id="closeSignup">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signupForm">
+                    <div class="form-group">
+                        <label class="form-label" for="signupName">Full Name</label>
+                        <input type="text" class="form-input" id="signupName" placeholder="Enter your full name" required>
+                        <div class="error-message" id="signupNameError">Please enter your full name</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="signupEmail">Email Address</label>
+                        <input type="email" class="form-input" id="signupEmail" placeholder="Enter your email" required>
+                        <div class="error-message" id="signupEmailError">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="signupPassword">Password</label>
+                        <input type="password" class="form-input" id="signupPassword" placeholder="Create a password" required>
+                        <div class="error-message" id="signupPasswordError">Password must be at least 6 characters</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-user-plus"></i>
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="signinModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Welcome Back</h2>
+                <button class="close-btn" id="closeSignin">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="signinForm">
+                    <div class="form-group">
+                        <label class="form-label" for="signinEmail">Email Address</label>
+                        <input type="email" class="form-input" id="signinEmail" placeholder="Enter your email" required>
+                        <div class="error-message" id="signinEmailError">Please enter a valid email address</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="signinPassword">Password</label>
+                        <input type="password" class="form-input" id="signinPassword" placeholder="Enter your password" required>
+                        <div class="error-message" id="signinPasswordError">Please enter your password</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Sign In
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="sellModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">List Your Item</h2>
+                <button class="close-btn" id="closeSell">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="sellForm">
+                    <div class="form-group">
+                        <label class="form-label" for="adTitle">Item Title</label>
+                        <input type="text" class="form-input" id="adTitle" placeholder="e.g. Brand New iPhone 13" required>
+                        <div class="error-message" id="adTitleError">Please enter a title for your item</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="adPrice">Price ($)</label>
+                        <input type="number" class="form-input" id="adPrice" placeholder="e.g. 299" required min="0">
+                        <div class="error-message" id="adPriceError">Please enter a valid price</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="adDescription">Description</label>
+                        <textarea class="form-input" id="adDescription" placeholder="Describe your item in detail..." rows="4" required></textarea>
+                        <div class="error-message" id="adDescriptionError">Please enter a description for your item</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="adImage">Image URL</label>
+                        <input type="url" class="form-input" id="adImage" placeholder="https://example.com/image.jpg">
+                        <div class="error-message" id="adImageError">Please enter a valid image URL</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                        <i class="fas fa-check-circle"></i>
+                        Post Listing
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+     
+
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Olx Market</h3>
+                    <p>Your trusted marketplace for premium products. Buy and sell with confidence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Browse Items</a></li>
+                        <li><a href="#">Sell Item</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Help & Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i>  Market</li>
+                        <li><i class="fas fa-phone"></i> (+92)272390211</li>
+                        <li><i class="fas fa-envelope"></i> umar@.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 OlxMarket. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

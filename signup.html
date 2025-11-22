@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title> Signup</title>
+  <link rel="stylesheet" href="signup.css" />
+</head>
+<body>
+  <div class="signup-wrapper">
+    <div class="signup-header">
+      <h1>Sign Up</h1>
+    </div>
+    <div class="signup-box">
+      <h2>Create a new account</h2>
+      <p>It's quick and easy.</p>
+
+      <div class="name-fields">
+        <input type="text" id="firstName" placeholder="First name" />
+        <input type="text" id="lastName" placeholder="Last name" />
+      </div>
+
+      <input type="email" id="email" placeholder="Email address" />
+      <input type="password" id="password" placeholder="Password" />
+
+    
+      <label for="dob" class="dob-label">Date of Birth</label>
+      <input type="date" id="dob" max="2025-12-31" />
+
+      <div class="gender-options">
+        <label><input type="radio" name="gender" value="Male" /> Male</label>
+        <label><input type="radio" name="gender" value="Female" /> Female</label>
+        <label><input type="radio" name="gender" value="Other" /> Other</label>
+      </div>
+
+      <button class="signup-btn" id="signupBtn">Sign Up</button>
+      <p class="login-link">Already have an account? <a href="index.html">Log In</a></p>
+      <p id="errorBox" class="error-message"></p>
+    </div>
+  </div>
+
+  <script src="signup.js"></script>
+</body>
+</html>
